@@ -3,7 +3,6 @@
 class UserQuerys extends Databases {
 
     public function regUsers($nama, $emails, $pass, $kodepos, $rt, $rw, $norumah, $alamatkap){
-
         $sql = "INSERT INTO biodata (nama, emails, pass, kode_pos, rt, rw, nomor_rumah, alamat_lengkap) VALUE(?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = $this->prepare($sql)):

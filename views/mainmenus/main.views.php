@@ -8,9 +8,10 @@ if (!isset($_SESSION['user']) ||(trim ($_SESSION['user']) == '')){
 
 require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
+require_once ('../../funcs/hijriDate.funcs.php');
 
 $object = new Querys;
-
+$hijri = new HijriDate;
 $data = $object->sessionData($_SESSION['user']);
 ?>
 
@@ -23,6 +24,8 @@ $data = $object->sessionData($_SESSION['user']);
     <title>Document</title>
 </head>
 <body>
+
+    <h1><?php echo $hijri->get_date(); ?></h1>
 
     <a href="">Zakat Fitrah</a><br>
     <a href="">Zakat Mal</a><br><br>
