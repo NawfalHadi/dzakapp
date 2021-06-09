@@ -32,7 +32,7 @@ $data = $object->sessionData($_SESSION['user']);
 
 <br>
 
-<a href="">Register Menjadi Penanggung Jawab</a> | <a href="">Penghasilan</a>
+<a href="regPjs.views.php">Register Menjadi Penanggung Jawab</a> | <a href="">Penghasilan</a>
 
 </body>
 </html>
