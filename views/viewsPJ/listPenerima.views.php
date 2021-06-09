@@ -91,8 +91,7 @@ if ($validating == 0) {
     <td><img src="<?php echo "$objPath->penerima_path".$rowPenerima['foto_penerima']; ?>"></td>
     <td><img src="<?php echo "$objPath->rumahpenerima_path".$rowPenerima['foto_tempatTinggal']; ?>"></td>
     <td>
-        <a href="">Edit</a>
-        <a href="">Delete</a>
+        <a href="<?php echo "detailPenerima.views.php?id_penerima=". $rowPenerima['id_penerima'];?>">Detail</a>
     </td>
   </tr>
 

@@ -58,10 +58,10 @@ endif;
     
     <form action="" method="post" enctype="multipart/form-data">
     
-    <input type="text" name="nama"> <br><br>
-    <input type="text" name="reason"> <br><br>
-    <input type="text" name="alamat"> <br><br>
-    <input type="text" name="kodepos"> <br><br>
+    Nama : <input type="text" name="nama"> <br><br>
+    Alasan : <input type="text" name="reason"> <br><br>
+    Alamat : <input type="text" name="alamat"> <br><br>
+    Kode Pos :<input type="text" name="kodepos"> <br><br>
     Foto Pnerima : <input type="file" name="foto_penerima"> <br><br>
     Foto Tempat Tinggal Penerima <input type="file" name="foto_tempatTinggal"><br><br>
 
