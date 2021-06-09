@@ -14,8 +14,9 @@ class Paths extends Databases {
     public $paymentMal_path = "../../uploads/bukti/zakatMal/payment/";
     public $giftMal_path = "../../uploads/bukti/zakatMal/gives/";
 
-    // Path untuk bagian foto si penerima
-    public $penerima_path = "../../uploads/penerima/";
+    // Path untuk bagian foto si penerima dan tempat tinggalnya
+    public $penerima_path = "../../uploads/penerima/orang/";
+    public $rumahpenerima_path = "../../uploads/penerima/tempat/";
 }
 
 ?>
