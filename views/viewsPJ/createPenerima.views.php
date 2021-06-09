@@ -52,6 +52,7 @@ endif;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
     
@@ -65,8 +66,6 @@ endif;
     Foto Tempat Tinggal Penerima <input type="file" name="foto_tempatTinggal"><br><br>
 
     <button type="submit" name="SAVE">Simpan Data</button>
-
-
     </form>
 
 </body>

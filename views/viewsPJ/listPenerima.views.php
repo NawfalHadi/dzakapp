@@ -8,10 +8,14 @@ if (!isset($_SESSION['user']) ||(trim ($_SESSION['user']) == '')){
 
 require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
+require_once ('../../queries/systems/paths.php');
+require_once ('../../queries/users/penerimaQuerys.php');
 
 $object = new Querys;
+$penerimaObject = new PenerimaQuerys;
 $data = $object->sessionData($_SESSION['user']);
 $validating = $object->pj_validateSession($_SESSION['user']);
+$objPath = new Paths;
 
 if ($validating == 0) {
 	header('location:../../index.php');
@@ -26,6 +30,29 @@ if ($validating == 0) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        img {
+            width: 80px;
+        }
+    </style>
+
 </head>
 <body>
     
@@ -39,6 +66,41 @@ if ($validating == 0) {
 <br>
 
 <a href="createPenerima.views.php">Tambah Data Penerima</a>
+
+<table>
+  <tr>
+    <th>Nama</th>
+    <th>Alasan Berhak</th>
+    <th>Alamat Lengkap</th>
+    <th>Kode Pos</th>
+    <th>Foto Penerima</th>
+    <th>Foto Tempat Tinggal</th>
+    <th>Action</th>
+  </tr>
+
+<?php 
+    $penerima = $penerimaObject->listDataPenerima();
+    while($rowPenerima = $penerima->fetch_array()){
+?>
+
+  <tr>
+    <td><?php echo $rowPenerima['nama']; ?></td>
+    <td><?php echo $rowPenerima['reason']; ?></td>
+    <td><?php echo $rowPenerima['alamat_lengkap']; ?></td>
+    <td><?php echo $rowPenerima['kode_pos']; ?></td>
+    <td><img src="<?php echo "$objPath->penerima_path".$rowPenerima['foto_penerima']; ?>"></td>
+    <td><img src="<?php echo "$objPath->rumahpenerima_path".$rowPenerima['foto_tempatTinggal']; ?>"></td>
+    <td>
+        <a href="">Edit</a>
+        <a href="">Delete</a>
+    </td>
+  </tr>
+
+<?php 
+    }
+?>
+    
+</table>
 
 
 </body>

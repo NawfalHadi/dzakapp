@@ -24,8 +24,11 @@ class PenerimaQuerys extends Paths {
         $stmt->close();
     }
 
-    public function editDataPenerima($nama, $reason, $alamat, $kodepos, $fotopenerima, $fototempat){
-        return true;
+    public function listDataPenerima(){
+        $sql = "SELECT id_penerima,nama, reason, alamat_lengkap, kode_pos, foto_penerima, foto_tempatTinggal FROM biodata_penerima";
+        $stmt = $this->query($sql);
+
+        return $stmt;
     }
 
 }
