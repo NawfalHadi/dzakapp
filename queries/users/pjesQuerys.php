@@ -24,6 +24,13 @@ class PjesQuerys extends Paths {
             
         $stmt->close();
     }
+
+    public function listPJActive(){
+        $sql = "SELECT id_pj, id_biodata, status_active, phone_no, debit_card, no_rek FROM biodata_pj WHERE status_active=1";
+        $stmt = $this->query($sql);
+
+        return $stmt;
+    }
 }
 
 ?> 
