@@ -56,6 +56,12 @@ class UserQuerys extends Databases {
         endif;
     }
 
+    public function checkIncomes($idbiodata){
+        $stmt = $this->query("SELECT COUNT(*) FROM incomes_user WHERE id_biodata = '$idbiodata'");
+        return $stmt->fetch_array()['COUNT(*)'];
+
+    }
+
 }
 
 ?>

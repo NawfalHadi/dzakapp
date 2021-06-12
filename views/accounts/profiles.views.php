@@ -68,7 +68,7 @@ $data = $object->sessionData($_SESSION['user']);
                   </table>
                   <br>
                   <a href="#" class="w3-button w3-blue">Register Menjadi Penanggung Jawab</a>
-                  <a href="" class="w3-button w3-blue">Penghasilan</a>
+                  <a href="<?php echo 'setting.incomes.php' ?>" class="w3-button w3-blue">Penghasilan</a>
                   <br><br>
                </div>
             </div>
