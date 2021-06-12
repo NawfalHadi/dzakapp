@@ -31,8 +31,15 @@ class PenerimaQuerys extends Paths {
         return $stmt;
     }
 
+    public function penerimaTerdekatPJ($kodepospj){
+        $sql = "SELECT id_penerima, nama FROM biodata_penerima WHERE kode_pos = ". $kodepospj;
+        $stmt = $this->query($sql);
+
+        return $stmt;
+    }
+
     public function getDataPenerima($id_penerima){
-        $sql = "SELECT id_penerima, nama, reason, alamat_lengkap, kode_pos, foto_penerima, foto_tempatTinggal FROM biodata_penerima WHERE id_penerima=?";
+        $sql = "SELECT * FROM biodata_penerima WHERE id_penerima=?";
         
         if($stmt = $this->prepare($sql)):
             $stmt->bind_param("i", $param_idpenerima);

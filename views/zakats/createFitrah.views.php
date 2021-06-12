@@ -9,7 +9,7 @@ if (!isset($_SESSION['user']) ||(trim ($_SESSION['user']) == '')){
 require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
 require_once ('../../queries/systems/paths.php');
-require_once ('../../queries/zakats/fitrahQuerys.php');
+require_once ('../../queries/systems/zakats.php');
 
 
 $object = new Querys;
@@ -19,11 +19,11 @@ $data = $object->sessionData($_SESSION['user']);
 require_once ('../../funcs/hijriDate.funcs.php');
 $hijri = new HijriDate;
 
-$fitrahObject = new FitrahQuerys;
+$fitrahObject = new Zakats;
 
 if (isset($_POST['PAY'])):
 
-    if ($fitrahObject->reqFitrah($data['id_biodata'], "Fitrah", "40000" )):
+    if ($fitrahObject->reqZakat($data['id_biodata'], "Fitrah", "40000" )):
         echo "<p>succes message</p>";
         header('location:paymentFitrah.views.php');
     else:
