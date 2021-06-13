@@ -61,6 +61,12 @@ class Incomes extends Databases {
         $stmt->close();
     }
 
+    public function calculateZakatMal($emasamount){
+        settype($emasamount, "float");
+        $result = ($emasamount/100) * 2.5;
+        return $result;
+    }
+
 }
 
 ?>

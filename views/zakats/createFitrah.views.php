@@ -22,10 +22,9 @@ $hijri = new HijriDate;
 $fitrahObject = new Zakats;
 
 if (isset($_POST['PAY'])):
-
     if ($fitrahObject->reqZakat($data['id_biodata'], "Fitrah", "40000" )):
         echo "<p>succes message</p>";
-        header('location:paymentFitrah.views.php');
+        header('location:mainFitrah.views.php');
     else:
         echo "<p>error message</p>";
     endif;

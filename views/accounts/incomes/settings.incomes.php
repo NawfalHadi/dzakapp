@@ -41,7 +41,7 @@ if(isset($_POST['MAKE'])){
         }
     }
 }
-// I'm On Toilet
+
 if(isset($_POST['UPDATES'])){
     $idbio = $data['id_biodata'];
     $gold = $_POST['emas_amount'];

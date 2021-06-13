@@ -18,13 +18,13 @@ $object = new Querys;
 $objPath = new Paths;
 
 $data = $object->sessionData($_SESSION['user']);
-if(!$object->getDetailHistory($_GET['id_zakatReq'])) die ('error message');
+if(!$object->getDetailHistory($_GET['id_zakatReq'])) die ('error message 1');
 
 require_once ('../../funcs/hijriDate.funcs.php');
 $hijri = new HijriDate;
 
 $zakatObject = new Zakats;
-if(!$zakatObject->getDataReq($object->getIDzakatreq)) die ('error message');
+if(!$zakatObject->getDataReq($object->getIDzakatreq)) die ('error message 2');
     
 if(isset($_POST['PAY'])){
     $value_buktiPembayaran = $_FILES['bukti_pembayaran']['name'];
@@ -52,7 +52,7 @@ if(isset($_POST['PAY'])){
 }
 
 $pjesObject = new PjesQuerys;
-if(!$pjesObject->getDetailPJ($object->getIDpj)) die ('error message');
+if(!$pjesObject->getDetailPJ($object->getIDpj)) die ('error message 3');
 
 $pemberiObject = new UserQuerys;
 if(!$pemberiObject->getDetailBiodata($pjesObject->getIDbiodata)) die ('error message');
@@ -100,15 +100,8 @@ $penerimaOject = new PenerimaQuerys;
 <h3>Upload Bukti Pembayaran Disini</h3>
 <form action="" enctype="multipart/form-data" method="POST">
 
-    <?php
-    
-    $date = date("Y-m-d");
-    $result = $date->format('Y-m-d');
-
-    ?>
-
     Upload Bukti Pembayaran Disini : <input type="file" name="bukti_pembayaran">
-    <input type="hidden" name="tanggal_pembayaran" value="<?php echo $result; ?>">
+    <input type="hidden" name="tanggal_pembayaran" value="<?php echo date("Y-m-d"); ?>">
     <br>
     <br>
 

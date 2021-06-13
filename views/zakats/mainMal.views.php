@@ -64,19 +64,7 @@ $zakatObject = new Zakats;
 
 <hr>
 
-<h3><?php echo $hijri->get_year(); ?></h3>
-
-<?php 
-if($hijri->get_month() == $hijri->get_month_name(9)):
-    echo '<a href="createFitrah.views.php">Pay Zakat Fitrah</a>';
-else:
-?>
-    <p>Belum waktunya untuk melakukan pembayaran zakat fitrah</p>
-<?php
-endif;
-echo '<a href="createFitrah.views.php">Pay Zakat Fitrah</a>';
-
-?>
+It will be put the code <br> counting days left <br> goto setting incomes <br>
 
 <hr>
 
@@ -94,7 +82,7 @@ echo '<a href="createFitrah.views.php">Pay Zakat Fitrah</a>';
   </tr>
 
 <?php 
-    $fitrahReq = $zakatObject->listZakatPending($data['id_biodata'], "Fitrah");
+    $fitrahReq = $zakatObject->listZakatPending($data['id_biodata'], "Mal");
     while($rowFitrah = $fitrahReq->fetch_array()){
 
       $biodataObject = new UserQuerys;

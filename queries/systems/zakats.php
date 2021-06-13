@@ -26,8 +26,8 @@ class Zakats extends Paths {
         return $stmt;
     }
 
-    public function listZakatPending(){
-        $sql = "SELECT * FROM zakat_req WHERE status_lunas='pending'";
+    public function listZakatPending($idbiodata, $zakattype){
+        $sql = "SELECT * FROM zakat_req WHERE status_lunas='pending' AND id_biodataPemberi=".$idbiodata." AND zakat_type='$zakattype'";
         $stmt = $this->query($sql);
 
         return $stmt;
@@ -40,8 +40,8 @@ class Zakats extends Paths {
         return $stmt;
     }
 
-    public function listZakatLunas(){
-        $sql = "SELECT * FROM zakat_req WHERE status_lunas='lunas'";
+    public function listZakatLunas($idbiodata){
+        $sql = "SELECT * FROM zakat_req WHERE status_lunas='lunas' AND id_biodataPemberi=".$idbiodata;
         $stmt = $this->query($sql);
 
         return $stmt;
@@ -93,14 +93,14 @@ class Zakats extends Paths {
     }
 
     public function belumToPending($idzakatreq, $idpj, $idpenerima){
-        $sql = "INSERT INTO zakat_history(id_zakatReq, id_pj, id_penerima) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO zakat_history (id_zakatReq, id_pj, id_penerima) VALUES (?, ?, ?)";
 
         if($stmt = $this->prepare($sql)):
             $stmt->bind_param("iii", $param_zakareqid, $param_pjid, $param_penerimaid);
             $param_zakareqid = $idzakatreq;
             $param_pjid = $idpj;
             $param_penerimaid = $idpenerima;
-            
+
             if($stmt->execute()):
                 return true;
             else:

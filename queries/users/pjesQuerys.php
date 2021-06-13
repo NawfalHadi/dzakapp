@@ -59,6 +59,27 @@ class PjesQuerys extends Paths {
             endif;
         endif;
     }
+
+    public function getIDpj($id_biodata){
+        $sql = "SELECT id_pj FROM biodata_pj WHERE id_biodata=?";
+
+        if($stmt = $this->prepare($sql)):
+            $stmt->bind_param("i", $param_biodataid);
+            $param_biodataid = $id_biodata;
+            if($stmt->execute()):
+                $stmt->store_result();
+                $stmt->bind_result(
+                    $this->getIDpj
+                );
+                $stmt->fetch();
+                if($stmt->num_rows == 1):
+                    return true;
+                else:
+                    return false;
+                endif;
+            endif;
+        endif;
+    }
 }
 
 ?> 

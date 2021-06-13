@@ -5,7 +5,7 @@ class Databases {
      private $host = "localhost",
             $user = "root",
             $pass = "",
-            $db = "kuliah_dzakatapp";
+            $db = "kuliah_dzakapp";
     
     protected $koneksi;
     
