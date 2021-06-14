@@ -36,12 +36,12 @@ $data = $object->sessionData($_SESSION['user']);
 
       ?>
       <!-- Page Content -->
-      <div style="margin-left:4%">
+      <div style="margin-left:2.8%">
         <?php
             $title = "Halaman Profil";
             include ('../../header.views.php');
         ?>
-         <div class="w3-container" style="margin-left: 35px; margin-top: 25px;",>
+         <div class="w3-container" style="margin-left: 35px; margin-top: 25px; margin-right: 40px",>
             <div class="w3-card-4" style="border-radius: 10px;">
                <header class="w3-container w3-light-grey">
                   <h3>Biodata profile</h3>
@@ -67,8 +67,8 @@ $data = $object->sessionData($_SESSION['user']);
                      </tr>
                   </table>
                   <br>
-                  <a href="#" class="w3-button w3-blue">Register Menjadi Penanggung Jawab</a>
-                  <a href="<?php echo 'setting.incomes.php' ?>" class="w3-button w3-blue">Penghasilan</a>
+                  <a href="regPJs.views.php" class="w3-button w3-blue">Register Menjadi Penanggung Jawab</a>
+                  <a href="incomes/settings.incomes.php" class="w3-button w3-blue">Penghasilan</a>
                   <br><br>
                </div>
             </div>

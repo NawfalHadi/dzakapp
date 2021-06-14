@@ -34,6 +34,8 @@
                   <input class="w3-input w3-border" type="password" placeholder="Enter Password" name="pass" required>
                   <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit" name="login">Login</button>
                </div>
+               Already Have Account ? <a href="views/accounts/reg.views.php">Register</a>
+               <br><br>
             </form>
          </div>
          <br>

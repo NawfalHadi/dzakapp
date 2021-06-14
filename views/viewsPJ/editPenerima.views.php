@@ -47,27 +47,45 @@ endif;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <!-- Core theme CSS (includes Bootstrap)-->
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
     
     </style>
 
 </head>
 <body>
+<!-- Sidebar -->
+      <?php include('../sidebar.views.php'); ?>
+      <!-- Page Content -->
+      <div style="margin-left:2.8%">
+      <?php $title = 'Data Penerima'; include ('../../header.views.php'); ?>
+      <div class="w3-container" style="margin-left: 35px; margin-top: 25px; margin-right: 40px">
+            <div class="w3-card-4" style="border-radius: 10px;">
+                     <header class="w3-container w3-light-grey">
+                        <h3>Edit Biodata Penerima</h3>
+                     </header>
+                     <br>
+                     <form class="w3-container" action="" method="post">
+                        <label>Nama</label>
+                        <input type="text" name="nama" class="w3-input w3-border" value="<?php echo $Obj->nama ?>">
 
-<h1>Edit Biodata Penerima</h1>
+                        <label>Alasan</label>
+                        <input type="text" name="reason" class="w3-input w3-border" value="<?php echo $Obj->reason ?>">
 
-<form action="" method="post">
-    
-    Nama : <input type="text" name="nama" value="<?php echo $Obj->nama ?>"> <br><br> 
-    Alasan : <input type="text" name="reason" value="<?php echo $Obj->reason ?>""> <br><br>
-    Alamat : <input type="text" name="alamat" value="<?php echo $Obj->alamat_lengkap ?>"> <br><br>
-    Kode Pos :<input type="text" name="kodepos" value="<?php echo $Obj->kode_pos ?>"> <br><br>
+                        <label>Alamat</label>
+                        <input type="text" name="alamat"class="w3-input w3-border" value="<?php echo $Obj->alamat_lengkap ?>">
 
-    <button type="submit" name="EDIT">Simpan Data Baru</button>
+                        <label>Kode Pos</label>
+                        <input type="text" name="kodepos" class="w3-input w3-border" value="<?php echo $Obj->kode_pos ?>">
 
-
-</form>
-    
+                        <button class="w3-btn w3-blue w3-section w3-padding" type="submit" name="EDIT">Simpan Peubahan</button>
+                     </form>
+                  </div>
+                  <br>
+            </div> 
+         </div>
+      </div>
 </body>
 </html>

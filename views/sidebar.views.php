@@ -1,4 +1,4 @@
-<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:3.5%">
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:2.8%">
     <div class="w3-container w3-teal w3-bar-item">
         <h1>.</h1>
     </div>

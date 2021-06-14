@@ -21,7 +21,7 @@ $objPath = new Paths;
 
 if (isset($_POST['REQ'])):
     $id_bio = $_POST['id_biodata'];
-    $status = $_POST['status'];
+    $status = 0;
     $ktpoto = $_FILES['ktp_foto']['name'];
     $ktpuser = $_FILES['ktp_and_user']['name'];
     $phone = $_POST['phone'];
@@ -32,11 +32,11 @@ if (isset($_POST['REQ'])):
     $filetmp2 = $_FILES['ktp_and_user']['tmp_name'];
 
     if ($Obj->requestPJ($id_bio, $status, $ktpoto, $ktpuser, $phone, $cardbit, $norek)):
-        echo "<p>succes message</p>";
         move_uploaded_file($filetmp1, $objPath->ktp_path . $ktpoto);
         move_uploaded_file($filetmp2, $objPath->ktpUser_path . $ktpuser);
+        header('location:profiles.views.php');
     else:
-        echo "<p>error message</p>";
+        null;
     endif;
 endif;
 
@@ -49,29 +49,78 @@ endif;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+   <!-- Core theme CSS (includes Bootstrap)-->
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
-<h1>Register Untuk Menjadi PJ ? | <?php echo $data['nama']; ?></h1>
-<p>Name : <?php echo $data['nama']; ?></p>
-<p>Email : <?php echo $data['emails']; ?></p>
-<p>Alamat Lengkap: <?php echo $data['alamat_lengkap']; ?></p>
-<p>Kode Pos : <?php echo $data['kode_pos']; ?>, Rt : <?php echo $data['rt']; ?>, Rw: <?php echo $data['rw']; ?></p>
+<!-- Sidebar -->
+      <?php include ('../sidebar.views.php'); ?>
+      <!-- Page Content -->
+      <div style="margin-left:2.8%">
+        <?php $title = "Daftar Jadi PJ"; include ('../../header.views.php'); ?>
+        <div class="w3-container" style="margin-left: 35px; margin-top: 25px; margin-right: 40px",>
+            <div class="w3-card-4" style="border-radius: 10px;">
+               <header class="w3-container w3-light-grey">
+                  <h3>Biodata profile</h3>
+               </header>
+               <div class="w3-container">
+                  <br>
+                  <table class="w3-table w3-bordered">
+                     <tr>
+                        <td>Nama </td>
+                        <td>: <?php echo $data['nama']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Email </td>
+                        <td>: <?php echo $data['emails']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Alamat Lengkap </td>
+                        <td>: <?php echo $data['alamat_lengkap']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Kode Pos </td>
+                        <td>: <?php echo $data['kode_pos']; ?>, Rt <?php echo $data['rt']; ?>, Rw <?php echo $data['rw'];?></td>
+                     </tr>
+                  </table>
+                  <br>
+               </div>
+            </div>
+         </div>
+         <div class="w3-container" style="margin-left: 35px; margin-top: 25px; margin-right: 40px",>
+            <div class="w3-card-4" style="border-radius: 10px;">
+                     <br>
+                     <form class="w3-container" action="" method="POST" enctype="multipart/form-data">
+                        <label>ID</label>
+                        <input type="text" name="id_biodata" value="<?php echo $data['id_biodata']; ?>" readonly class="w3-input w3-border">
+                        <p style="font-size: 10px; color: grey">*Status mu akan tidak aktif, sampai di ACC setelah melihat laporan mu, terima kasih</p>
 
-<br>
+                        <label>KTP</label>
+                        <input type="file" name="ktp_foto" class="w3-input w3-border">
 
-<form action="" method="post" enctype="multipart/form-data">
-    <p>Your ID is : <?php echo $data['id_biodata']; ?></p> <input type="hidden" name="id_biodata" value="<?php echo $data['id_biodata']; ?>">
-    <p>Note : Status mu akan tidak aktif, sampai di ACC setelah melihat laporan mu, terima kasih</p> <input type="hidden" name="status" value="0">
+                        <label>FOTO Ktp Dengan Anda</label>
+                        <input type="file" name="ktp_and_user"class="w3-input w3-border">
 
-    <input type="file" name="ktp_foto"><br><br>
-    <input type="file" name="ktp_and_user"><br><br>
-    <input type="text" name="phone"><br><br>
-    <input type="text" name="debit_card"><br><br>
-    <input type="text" name="no_rek"><br><br>
+                        <label>NO HP</label>
+                        <input type="text" name="phone" class="w3-input w3-border">
 
-    <button type="submit" name="REQ">Request</button>
-</form>
-    
+                        <label>Kartu Debit</label>
+                        <input type="text" name="debit_card" class="w3-input w3-border">
+
+                        <label>NO Rekening</label>
+                        <input type="text" name="no_rek" class="w3-input w3-border">
+
+                        <button class="w3-btn w3-blue w3-section w3-padding" type="submit" name="REQ">Daftar</button>
+                     </form>
+                  </div>
+                  <br>
+            </div> 
+         </div>
+      </div>
+   </body>
 </body>
 </html>

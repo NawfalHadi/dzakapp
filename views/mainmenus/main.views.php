@@ -8,8 +8,16 @@ if (!isset($_SESSION['user']) ||(trim ($_SESSION['user']) == '')){
 
 require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
+require_once ('../../queries/systems/paths.php');
+require_once ('../../queries/users/pjesQuerys.php');
 
 $object = new Querys;
+$pjesObject = new PjesQuerys;
+$validating = $object->pj_validateSession($_SESSION['user']);
+
+if ($validating != 0) {
+	header('location:mainPJ.views.php');
+}
 
 $data = $object->sessionData($_SESSION['user']);
 ?>
@@ -34,7 +42,7 @@ $data = $object->sessionData($_SESSION['user']);
       include ('../sidebar.views.php');
       ?>
       <!-- Page Content -->
-      <div style="margin-left:4%">
+      <div style="margin-left:2.8%">
         <?php
             $title = "Halaman Utama";
             include ('../../header.views.php');

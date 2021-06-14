@@ -40,8 +40,9 @@
 
 
     <center>
-    <h1>Register</h1>
         <div class="w3-card-4" style="max-width:600px; margin-top: 80px">
+        <br>
+            <h1>Register</h1>
             <form class="w3-container" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                <div class="w3-section">
                   <label><b>Nama</b></label><br><br>
@@ -63,7 +64,10 @@
                   <button class="w3-button w3-block w3-green w3-section w3-padding" type="submit">Register</button>
                </div>
             </form>
+            Already Have Account ? <a href="../../">Login</a>
+            <br><br>
         </div>
+        <br><br><br><br>
     </center>
 
     <!-- <form action="" method="post">

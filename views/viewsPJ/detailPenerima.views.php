@@ -42,6 +42,9 @@ endif;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+   <!-- Core theme CSS (includes Bootstrap)-->
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
     
@@ -53,27 +56,79 @@ endif;
 
 </head>
 <body>
-
-<h1>Biodata Admin</h1>
-
-<p>Name : <?php echo $data['nama']; ?></p>
-<p>Email : <?php echo $data['emails']; ?></p>
-<p>Alamat Lengkap: <?php echo $data['alamat_lengkap']; ?></p>
-<p>Kode Pos : <?php echo $data['kode_pos']; ?>, Rt : <?php echo $data['rt']; ?>, Rw: <?php echo $data['rw']; ?></p>
-
-<hr>
-
-<h1>Biodata Penerima</h1><a href="<?php echo "editPenerima.views.php?id_penerima=". $penerimaObject->id_penerima?>">Edit Biodata</a><br>
-Foto Penerima : <img src="<?php echo $objPath->penerima_path . $penerimaObject->foto_penerima ?>" alt="LMAO">
-<br>
-Foto Tempat Tinggal : <img src="<?php echo $objPath->rumahpenerima_path . $penerimaObject->foto_tempatTinggal ?>" alt="LMAO">
-
-<p>Nama : <?php echo $penerimaObject->nama ?> </p>
-<p>Alamat Lengkap : <?php echo $penerimaObject->alamat_lengkap ?></p>
-<p>Kode Pos : <?php echo $penerimaObject->kode_pos ?></p>
-
-<form action="" method="post">
-    <button name="HAPUS" type="submit">Delete</button>
-</form>
+<!-- Sidebar -->
+      <?php include ('../sidebar.views.php'); ?>
+      <!-- Page Content -->
+      <div style="margin-left:2.8%">
+        <?php $title = 'Data Penerima';include ('../../header.views.php'); ?>
+        <div class="w3-container" style="margin-left: 35px; margin-top: 25px; margin-right: 40px">
+            <div class="w3-card-4" style="border-radius: 10px;">
+               <header class="w3-container w3-light-grey">
+                  <h3>Profile Admin</h3>
+               </header>
+               <div class="w3-container">
+                  <br>
+                  <table class="w3-table w3-bordered">
+                     <tr>
+                        <td>Nama </td>
+                        <td>: <?php echo $data['nama']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Email </td>
+                        <td>: <?php echo $data['emails']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Alamat Lengkap </td>
+                        <td>: <?php echo $data['alamat_lengkap']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Kode Pos </td>
+                        <td>: <?php echo $data['kode_pos']; ?>, Rt <?php echo $data['rt']; ?>, Rw <?php echo $data['rw']; ?></td>
+                     </tr>
+                  </table>
+                  <br>
+               </div>
+            </div>
+         </div>
+         <div class="w3-container" style="margin-left: 35px; margin-top: 25px; margin-right: 40px">
+            <div class="w3-card-4" style="border-radius: 10px;">
+               <header class="w3-container w3-light-grey">
+                  <h3>Detail Penerima</h3>
+               </header>
+                <div class="w3-container">
+                  <br>
+                  <table class="w3-table w3-bordered">
+                     <tr>
+                        <td>Nama </td>
+                        <td>: <?php echo $data['nama']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Alamat Lengkap </td>
+                        <td>: <?php echo $data['alamat_lengkap']; ?>, Rt <?php echo $data['rt']; ?>, Rw <?php echo $data['rw']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Kode Pos </td>
+                        <td>: <?php echo $data['kode_pos']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Foto Penerima </td>
+                        <td>: <img src="<?php echo $objPath->penerima_path . $penerimaObject->foto_penerima ?>" alt="LMAO"></td>
+                     </tr>
+                     <tr>
+                        <td>Foto Tempat Tinggal </td>
+                        <td>: <img src="<?php echo $objPath->rumahpenerima_path . $penerimaObject->foto_tempatTinggal ?>" alt="LMAO"></td>
+                     </tr>
+                  </table>
+                  <br>
+                  <form action="" method="post">
+                  <a href="<?php echo "editPenerima.views.php?id_penerima=". $penerimaObject->id_penerima?>" class="w3-button w3-blue"><i class="fa fa-edit"></i> Edit Biodata</a>
+                  <button type="submit" name="HAPUS" class="w3-button w3-red"><i class="fa fa-remove"></i> Hapus Data Penerima</button>
+                  </form>
+                  <br><br>
+               </div>
+            </div>
+        </div>
+        <br><br>
+    </div>
 </body>
 </html>
