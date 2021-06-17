@@ -29,9 +29,6 @@ $data = $object->sessionData($_SESSION['user']);
       <meta name="description" content="" />
       <meta name="author" content="" />
       <title>Dzakapp - Main Page</title>
-      <!-- Favicon-->
-      <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-      <!-- Core theme CSS (includes Bootstrap)-->
       <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    </head>
@@ -53,7 +50,8 @@ $data = $object->sessionData($_SESSION['user']);
                </div>
                <div class="w3-container">
                   <a href="#">Zakat Fitrah</a><br>
-                  <a href="#">Zakat Mal</a><br><br>                
+                  <a href="#">Zakat Mal</a><br>
+                  <a href="../viewsPJ/listRequestZakat.php">Transaksi Zakat</a><br><br>                
                </div>               
             </div>
          </div>

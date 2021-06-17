@@ -32,7 +32,7 @@ if(isset($_POST['PENDING'])){
 
 	if($zakatObject->belumToPending($idreq, $pjesObject->getIDpj, $idpenrima)){
 		if($zakatObject->changeStatus($statuszakat,$idreq)){
-			header('location:mainFitrah.views.php');
+			header('location:../viewsPJ/listRequestZakat.php');
 		}else{
 			echo "Failed Message 2";
 		}
@@ -50,31 +50,61 @@ if(isset($_POST['PENDING'])){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+<!-- Sidebar -->
+      <?php include ('../sidebar.views.php') ?>
+      <!-- Page Content -->
+      <div style="margin-left:2.8%">
+	  	<?php $title = "Confirm Penerima Zakat"; include ('../../header.views.php') ?>
+		  <div class="w3-container" style="margin-left: 10px; margin-top: 25px;",>
+            <div class="w3-card-4" style="border-radius: 10px;">
+               <header class="w3-container w3-light-grey">
+                  <h3>Pilih Penerima Zakat</h3>
+               </header>
+               <div class="w3-container">
+                  <br>
+                  <table class="w3-table w3-bordered">
+                     <tr>
+                        <td>Nama </td>
+                        <td>: <?php echo $data['nama']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Email </td>
+                        <td>: <?php echo $data['emails']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Alamat Lengkap </td>
+                        <td>: <?php echo $data['alamat_lengkap']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Kode Pos </td>
+                        <td>: <?php echo $data['kode_pos']; ?>, Rt : <?php echo $data['rt']; ?>, Rw: <?php echo $data['rw']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Pilih Penerima Zakat </td>
+                        <td>
+                           <form action="" method="post">:
+                              <select name="idpenerima" id="cars">
+                              <?php 
+                                 $penerima = $penerimaObject->penerimaTerdekatPJ($object->sessionData($data['id_biodata'])['kode_pos']);
+                                 while($rowPenerima = $penerima->fetch_array()){
+                              ?>
+                              <option value="<?php echo $rowPenerima['id_penerima'] ?>"><?php echo $rowPenerima['nama'] ?></option>
 
-<h3>Biodata Saya</h3>
-<p>Name : <?php echo $data['nama']; ?></p>
-<p>Email : <?php echo $data['emails']; ?></p>
-<p>Alamat Lengkap: <?php echo $data['alamat_lengkap']; ?></p>
-<p>Kode Pos : <?php echo $data['kode_pos']; ?>, Rt : <?php echo $data['rt']; ?>, Rw: <?php echo $data['rw']; ?></p>	
-<hr>
-
-
-<form action="" method="post">
-	<select name="idpenerima">
-	<?php 
-		$penerima = $penerimaObject->penerimaTerdekatPJ($object->sessionData($data['id_biodata'])['kode_pos']);
-    	while($rowPenerima = $penerima->fetch_array()){
-	?>
-    	<option value="<?php echo $rowPenerima['id_penerima'] ?>"><?php echo $rowPenerima['nama'] ?></option>
-
-	<?php } ?>
-  	</select>
-
-	<button type="submit" name="PENDING">CONFIRM</button>
-
-</form>
-	
+                              <?php } ?>
+                              </select>
+                              <button type="submit" name="PENDING">CONFIRM</button>
+                           </form>
+                        </td>
+                     </tr>
+                  </table>
+                  <br>
+               </div>
+            </div>
+         </div>
+      </div>	
 </body>
 </html>

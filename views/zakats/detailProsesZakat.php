@@ -54,7 +54,7 @@ if(isset($_POST['CONFIRM'])){
     if($zakatObject->changeStatus($statuszakat, $idreq)){
 		if($zakatObject->pendingToLunas($value_buktiPemberian, date('Y-m-d'), $object->getIDzakathist)){
 			move_uploaded_file($tmp_buktiPemberian, $objPath->giftFitrah_path . $value_buktiPemberian);
-            header('location:mainFitrah.views.php');
+            header('location:../viewsPJ/listRequestZakat.php');
             echo "succes Message";
 		}else{
 			echo "Failed Message";
@@ -75,7 +75,9 @@ if(isset($_POST['CONFIRM'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
     
     img {
@@ -92,35 +94,82 @@ if(isset($_POST['CONFIRM'])){
 
 </head>
 <body>
-
-    <img src="<?php echo $objPath->paymentFitrah_path.$object->bukti_pembayaran ?>" alt="">
-    <hr>
-
-    <h3>Biodata Pemberi</h3>
-    <p>Nama : <b><?php echo $pemberiObject->get_nama?></b></p>
-    <p>Email : <b><?php echo $pemberiObject->get_emails?></b></p>
-    <p>Alamat Lengkap : <b><?php echo $pemberiObject->get_alamatlengkap?></b>
-    Rt : <?php echo $pemberiObject->get_rt?> Rw : <?php echo $pemberiObject->get_rw?> Nomor Rumah : <?php echo $pemberiObject->get_nomorrumah?></p>
-
-    <hr>
-
-    <h3>Biodata Penerima</h3>
-    <img class='img-penerima' src="<?php echo $objPath->penerima_path.$penerimaOject->foto_penerima ?>" alt="">
-    <img class='img-penerima' src="<?php echo $objPath->rumahpenerima_path.$penerimaOject->foto_tempatTinggal ?>" alt=""><br>
-
-    <p>Nama : <?php echo $penerimaOject->nama ?></p>
-    <p>Reason : <?php echo $penerimaOject->reason ?></p>
-    <p>Kode Pos : <?php echo $penerimaOject->kode_pos ?></p>
-    <p>Alamat Lengkap : <?php echo $penerimaOject->alamat_lengkap ?></p>
-
-    <h3>Konfirmasi Pembayarna Dan Pemberian</h3>
-
-    <form action="" enctype="multipart/form-data" method="post">
-    
-        Bukti Penyerahan : <input type="file" name="bukti_pemberian"><br>
-        <button type="submit" name="CONFIRM"> CONFIRM </button>
-
-    </form>
-    
+<!-- Sidebar -->
+      <?php include('../sidebar.views.php'); ?>
+      <!-- Page Content -->
+      <div style="margin-left:2.8%">
+         <?php $title = "Confirm Transaksi"; include('../../header.views.php') ?>
+         <div class="w3-container">
+            <div class="w3-card-4" style="margin-top: 10px">
+               <header class="w3-container w3-light-grey">
+                  <h3>Biodata Pemberi</h3>
+               </header>
+               <div class="w3-container">
+                  <br>
+                  <table class="w3-table w3-bordered">
+                     <tr>
+                        <td>Nama </td>
+                        <td>: <?php echo $pemberiObject->get_nama?></td>
+                     </tr>
+                     <tr>
+                        <td>Email </td>
+                        <td>: <?php echo $pemberiObject->get_emails?></td>
+                     </tr>
+                     <tr>
+                        <td>Alamat Lengkap </td>
+                        <td>: <?php echo $pemberiObject->get_alamatlengkap?> Rt : <?php echo $pemberiObject->get_rt?> Rw : <?php echo $pemberiObject->get_rw?> Nomor Rumah : <?php echo $pemberiObject->get_nomorrumah?></td>
+                     </tr>
+                  </table>
+                  <br>
+               </div>
+            </div>
+         </div>
+         <div class="w3-container">
+            <div class="w3-card-4" style="margin-top: 10px">
+               <header class="w3-container w3-light-grey">
+                  <h3>Biodata Penerima</h3>
+               </header>
+               <div class="w3-container">
+               <br>
+               <center>
+                  <img src="<?php echo $objPath->penerima_path. $penerimaOject->foto_penerima?>" alt="" style="width: 180px;height: 180px" >
+                  <img src="<?php echo $objPath->rumahpenerima_path. $penerimaOject->foto_tempatTinggal?>" alt="" style="width: 180px;height: 180px">
+                  <br><br>
+                </center>
+                  <table class="w3-table w3-bordered">
+                     <tr>
+                        <td>Nama </td>
+                        <td>: <?php echo $penerimaOject->nama?></td>
+                     </tr>
+                     <tr>
+                        <td>Reason </td>
+                        <td>: <?php echo $penerimaOject->reason?></td>
+                     </tr>
+                     <tr>
+                        <td>Kode Pos </td>
+                        <td>: <?php echo $penerimaOject->kode_pos?></td>
+                     </tr>
+                     <tr>
+                        <td>Alamat Lengkap </td>
+                        <td>: <?php echo $penerimaOject->alamat_lengkap?>
+                     </tr>
+                     <tr>
+                        <td>Bukti Penyerahan</td>
+                        <td>
+                           <form action="" enctype="multipart/form-data" method="post">
+                              <input type="file" name="bukti_pemberian"><br>
+                        </td>
+                     </tr>
+                  </table>
+                  <center>
+                  <br><br>
+                  <button type="submit" name="CONFIRM"> CONFIRM </button>
+                  </center>
+                  </form>
+                  <br>
+               </div>
+            </div>
+         </div>
+      </div>
 </body>
 </html>

@@ -76,7 +76,7 @@ if ($validating == 0) {
          <div class="w3-container" style="margin-left: 35px; margin-top: 25px; margin-right: 40px">
             <div class="w3-card-4" style="border-radius: 10px;"> 
                <header class="w3-container w3-light-grey">
-                  <h3>List Penerima</h3>
+                  <h3>List Penerima | <a href="createPenerima.views.php">+ Tambah Penerima</a></h3>
                </header>
                <div class="w3-container">
                   <br>

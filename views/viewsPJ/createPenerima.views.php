@@ -36,6 +36,7 @@ if (isset($_POST['SAVE'])):
     if ($Obj->insertDataPenerima($namas, $reasons, $alamat, $kodepos, $fotopenerima, $fototempat)):
         move_uploaded_file($filetmp1, $objPath->penerima_path . $fotopenerima);
         move_uploaded_file($filetmp2, $objPath->rumahpenerima_path . $fototempat);
+        header('location:listPenerima.views.php');
     else:
         null;
     endif;

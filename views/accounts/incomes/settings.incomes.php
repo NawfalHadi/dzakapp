@@ -80,51 +80,96 @@ if(isset($_POST['UPDATES'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h3>Biodata Saya</h3>
-    <p>ID Biodata : <?php echo $data['id_biodata']; ?></p>
-    <p>Name : <?php echo $data['nama']; ?></p>
-    <p>Email : <?php echo $data['emails']; ?></p>
-    <p>Alamat Lengkap: <?php echo $data['alamat_lengkap']; ?></p>
-    <p>Kode Pos : <?php echo $data['kode_pos']; ?>, Rt : <?php echo $data['rt']; ?>, Rw: <?php echo $data['rw']; ?></p>	
-    <hr>
-
-<?php if($biodataObject->checkIncomes($data['id_biodata']) == 0){ ?>
-<h3>Isi Jumlah Emas Yang anda punya</h3>
-    <form action="" method="post">
-        Emas yang dipunya : <input type="number" name="emas_amount">gr
-        <br><br>
-        <button type="submit" name="MAKE"> INPUT HARTA</button>
-    </form>
-
-<?php }else{ if(!$incomeObject->detailIncomes($data['id_biodata'])) die ('error message');  ?> 
-    <h3>Harta Anda</h3>
-    
-    <?php if($message == null) { null; } else { echo 'Message : '.$message; } ?>
-    <form action="" method="post">
-        <input type="hidden" name="date_pay" value="<?php echo $incomeObject->get_datepay ?>">
-        <input type="number" name="emas_amount" value="<?php echo $incomeObject->get_emasamount ?>"> gr 
-        <button type="submit" name="UPDATES">UPDATE</button>
-    </form>
-
-    <?php 
-
-    if ($incomeObject->get_datepay != null){
-        $daysleft = date_diff(date_create(date("Y-m-d")), date_create($incomeObject->get_datepay));
-
-        if($daysleft->format("%R") == "-"){
-            echo "<p>How many days left to pay : Saatnya membayar zakat mal | <a href=''>You Can Pay Your Zakat Mal Here</a></p> ";
-        }else {
-            echo "<p>How many days left to pay : ". $daysleft->format('%a Days Left') ." </p> ";
-        }
-    }else {
-        echo "<p>Masih belum sampai nishab yaitu 85 gram emas</p> ";
-    }
-    
-
-    ?>
-
-<?php } ?>
+<!-- Sidebar -->
+      <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:2.8%">
+         <div class="w3-container w3-light-grey w3-bar-item">
+            <h1>.</h1>
+         </div>
+         <a href="../../mainmenus/main.views.php" class="w3-bar-item w3-button"><i class="fa fa-home" aria-hidden="true"></i></a>
+         <a href="../profiles.views.php" class="w3-bar-item w3-button"><i class="fa fa-user" aria-hidden="true"></i></a>
+      </div>
+      <!-- Page Content -->
+      <div style="margin-left:2.8%">
+         <?php $title = 'Harta'; include('../../../header.views.php'); ?>
+         <div class="w3-container">
+            <div class="w3-card-4" style="margin-top: 10px">
+               <header class="w3-container w3-light-grey">
+                  <h3>Biodata saia</h3>
+               </header>
+               <div class="w3-container">
+                  <br>
+                  <table class="w3-table w3-bordered">
+                     <tr>
+                        <td>ID Biodata </td>
+                        <td>: <?php echo $data['id_biodata']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Nama </td>
+                        <td>: <?php echo $data['nama']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Email </td>
+                        <td>: <?php echo $data['emails']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Alamat Lengkap </td>
+                        <td>: <?php echo $data['alamat_lengkap']; ?></td>
+                     </tr>
+                     <tr>
+                        <td>Kode Pos </td>
+                        <td>: <?php echo $data['kode_pos']; ?>, Rt <?php echo $data['rt']; ?>, Rw <?php echo $data['rw']; ?></td>
+                     </tr>
+                  </table>
+                  <br>
+               </div>
+            </div>
+         </div>
+         <div class="w3-container">
+            <div class="w3-card-4" style="margin-top: 10px">
+               <header class="w3-container w3-light-grey">
+                  <h3>Pendapatan</h3>
+               </header>
+               <div class="w3-container">
+                  <br>
+                  <?php if($biodataObject->checkIncomes($data['id_biodata']) == 0){ ?>
+                  <h3>Isi Jumlah Emas Yang anda punya</h3>
+                  <form action="" method="post">
+                     Emas yang dipunya : <input type="number" name="emas_amount">gr
+                     <br><br>
+                     <button type="submit" name="MAKE"> INPUT HARTA</button>
+                  </form>
+                  <?php }else{ if(!$incomeObject->detailIncomes($data['id_biodata'])) die ('error message');  ?> 
+                  <h3>Harta Anda</h3>
+                  <?php if($message == null) { null; } else { echo 'Message : '.$message; } ?>
+                  <form action="" method="post">
+                     <input type="hidden" name="date_pay" value="<?php echo $incomeObject->get_datepay ?>">
+                     <input type="number" name="emas_amount" value="<?php echo $incomeObject->get_emasamount ?>"> gr 
+                     <button type="submit" name="UPDATES">UPDATE</button>
+                  </form>
+                  <?php 
+                     if ($incomeObject->get_datepay != null){
+                         $daysleft = date_diff(date_create(date("Y-m-d")), date_create($incomeObject->get_datepay));
+                     
+                         if($daysleft->format("%R") == "-"){
+                             echo "<p>How many days left to pay : Saatnya membayar zakat mal | <a href=''>You Can Pay Your Zakat Mal Here</a></p> ";
+                         }else {
+                             echo "<p>How many days left to pay : ". $daysleft->format('%a Days Left') ." </p> ";
+                         }
+                     }else {
+                         echo "<p>Masih belum sampai nishab yaitu 85 gram emas</p> ";
+                     }
+                     
+                     
+                     ?>
+                  <?php } ?>
+                  <br><br>
+               </div>
+            </div>
+         </div>
+      </div>
 </body>
 </html>

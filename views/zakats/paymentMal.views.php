@@ -76,7 +76,7 @@ $penerimaOject = new PenerimaQuerys;
       <?php include('../sidebar.views.php') ?>
       <!-- Page Content -->
       <div style="margin-left:2.8%">
-        <?php $title = "Zakat Fitrah"; include('../../header.views.php'); ?>
+        <?php $title = "Zakat Mal"; include('../../header.views.php'); ?>
          <div class="w3-container" style="margin-left: 10px; margin-top: 25px;",>
             <div class="w3-card-4" style="border-radius: 10px;">
                <header class="w3-container w3-light-grey">

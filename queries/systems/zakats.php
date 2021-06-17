@@ -141,6 +141,8 @@ class Zakats extends Paths {
             endif;
         endif;
     }
+
+    
 }
 
 ?>

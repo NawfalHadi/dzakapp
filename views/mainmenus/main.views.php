@@ -53,8 +53,8 @@ $data = $object->sessionData($_SESSION['user']);
                   <h2>Quick Access</h2>
                </div>
                <div class="w3-container">
-                  <a href="#">Zakat Fitrah</a><br>
-                  <a href="#">Zakat Mal</a><br><br>
+                  <a href="../zakats/mainFitrah.views.php">Zakat Fitrah</a><br>
+                  <a href="../zakats/mainMal.views.php">Zakat Mal</a><br><br>
                </div>
             </div>
          </div>
