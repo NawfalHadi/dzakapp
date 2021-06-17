@@ -2,6 +2,7 @@
 
 class Querys extends Databases {
 
+    // fungsi login
     public function logins($emails, $pass){
         
         $sql = "SELECT * FROM biodata WHERE emails = '$emails' AND pass = '$pass'";
@@ -15,23 +16,27 @@ class Querys extends Databases {
         }        
     }
 
+    // melihat siapa yang sedang login
     public function sessionData($id_biodata){
         $stmt = $this->query("SELECT * FROM biodata WHERE id_biodata = '$id_biodata'");
         return $stmt->fetch_array();
     }
 
+    // melihat apakah yang sedang login adalah admin aktif
     public function pj_validateSession($id_biodata){
         $stmt = $this->query("SELECT COUNT(*) FROM biodata_pj WHERE id_biodata = '$id_biodata' AND status_active = '1'");
         return $stmt->fetch_array()['COUNT(*)'];
         
     }
 
+    // untuk menghindari user yang sedang request menjadi PJ, agar tidak dianggap sudah menjadi admin
     public function pj_notvalidateSession($id_biodata){
         $stmt = $this->query("SELECT COUNT(*) FROM biodata_pj WHERE id_biodata = '$id_biodata' AND status_active = '0'");
         return $stmt->fetch_array()['COUNT(*)'];
         
     }
 
+    // untuk melihat detail dari riwayat transaksi
     public function getDetailHistory($id_zakatReq){
         $sql = "SELECT * FROM zakat_history WHERE id_zakatReq=?";
 

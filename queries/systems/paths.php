@@ -1,5 +1,6 @@
 <?php 
 
+// kelas ini digunakan untuk mengambil path agar bisa dmengambil foto pada folder lain dengan lebih mudah
 class Paths extends Databases {
     
     // Path menuju folder uploads/pjes
