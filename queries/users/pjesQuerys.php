@@ -2,6 +2,7 @@
 
 class PjesQuerys extends Paths {
 
+    // user meminta request untuk menjadi seorang PJ
     public function requestPJ($id_biodata, $status, $ktp, $ktpuser, $phone, $card, $no_rek){
         $sql = "INSERT INTO biodata_pj (id_biodata, status_active, ktp_foto, ktp_and_user, phone_no, debit_card, no_rek) VALUE (?, ?, ?, ?, ?, ?, ?)";
 
@@ -25,6 +26,7 @@ class PjesQuerys extends Paths {
         $stmt->close();
     }
 
+    // list pj yang sudah aktif
     public function listPJActive(){
         $sql = "SELECT id_pj, id_biodata, status_active, phone_no, debit_card, no_rek FROM biodata_pj WHERE status_active=1";
         $stmt = $this->query($sql);
@@ -32,6 +34,7 @@ class PjesQuerys extends Paths {
         return $stmt;
     }
 
+    // list pj yang masih dalam tahap request, yang belum di acc untuk menjadi PJ
     public function listPJNotActive(){
         $sql = "SELECT id_pj, id_biodata, status_active, phone_no, debit_card, no_rek FROM biodata_pj WHERE status_active=0";
         $stmt = $this->query($sql);
@@ -39,6 +42,7 @@ class PjesQuerys extends Paths {
         return $stmt;
     }
 
+    // Untuk melihat detail data dari PJ
     public function getDetailPJ($id_pj){
         $sql = "SELECT * FROM biodata_pj WHERE id_pj=?";
 
@@ -88,6 +92,7 @@ class PjesQuerys extends Paths {
         endif;
     }
 
+    // untuk menolak request dari permintaan user yang ingin menjadi PJ
     public function tolakPj($id_pj){
         $sql = "DELETE FROM biodata_pj WHERE id_pj=?";
         if($stmt = $this->prepare($sql)):
@@ -103,6 +108,7 @@ class PjesQuerys extends Paths {
         $stmt->close();
     }
 
+    // untuk menERIMA request dari permintaan user yang ingin menjadi PJ
     public function terimaPj($idpj){
         $sql = "UPDATE biodata_pj SET status_active=? WHERE id_pj=?";
 

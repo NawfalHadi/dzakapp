@@ -2,6 +2,7 @@
 
 class PenerimaQuerys extends Paths {
     
+    // menambahkan data penerima, untuk nanti zakatnya diserahkan
     public function insertDataPenerima($nama, $reason, $alamat, $kodepos, $fotopenerima, $fototempat){
         $sql = "INSERT INTO biodata_penerima(nama, reason, alamat_lengkap, kode_pos, foto_penerima, foto_tempatTinggal) VALUE (?, ?, ?, ?, ?, ?)";
 
@@ -24,6 +25,7 @@ class PenerimaQuerys extends Paths {
         $stmt->close();
     }
 
+    // memperlihatkan semua data penerima yang akan mendapatkan zakat nya
     public function listDataPenerima(){
         $sql = "SELECT id_penerima, nama, reason, alamat_lengkap, kode_pos, foto_penerima, foto_tempatTinggal FROM biodata_penerima";
         $stmt = $this->query($sql);
@@ -31,6 +33,7 @@ class PenerimaQuerys extends Paths {
         return $stmt;
     }
 
+    // mencari penerima yang terdekat dengan pj
     public function penerimaTerdekatPJ($kodepospj){
         $sql = "SELECT id_penerima, nama FROM biodata_penerima WHERE kode_pos = ". $kodepospj;
         $stmt = $this->query($sql);
@@ -38,6 +41,7 @@ class PenerimaQuerys extends Paths {
         return $stmt;
     }
 
+    // menperlihatkan detail biodata penerima
     public function getDataPenerima($id_penerima){
         $sql = "SELECT * FROM biodata_penerima WHERE id_penerima=?";
         
@@ -67,6 +71,7 @@ class PenerimaQuerys extends Paths {
         $stmt->close();
     }
 
+    // edit data detail dari penerima
     public function editDataPenerima($nama, $reason, $alamat, $kodepos, $fotopenerima, $fototempat, $id_penerima){
         $sql = "UPDATE biodata_penerima SET nama=?, reason=?, alamat_lengkap=?, kode_pos=?, foto_penerima=?, foto_tempatTinggal=? WHERE id_penerima=?";
 
@@ -90,6 +95,7 @@ class PenerimaQuerys extends Paths {
 
     }
 
+    // Hapus data penerima yang ada pada database
     public function deleteDataPenerima($id_penerima){
         $sql = "DELETE FROM biodata_penerima WHERE id_penerima=?";
         if($stmt = $this->prepare($sql)):

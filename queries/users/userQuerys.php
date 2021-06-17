@@ -2,6 +2,7 @@
 
 class UserQuerys extends Databases {
 
+    // Melakukan pendaftaran agar bisa mengakses aplikasi nya
     public function regUsers($nama, $emails, $pass, $kodepos, $rt, $rw, $norumah, $alamatkap){
         $sql = "INSERT INTO biodata (nama, emails, pass, kode_pos, rt, rw, nomor_rumah, alamat_lengkap) VALUE(?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -27,6 +28,7 @@ class UserQuerys extends Databases {
 
     }
 
+    // Melihat detail biodata user
     public function getDetailBiodata($id_biodata){
         $sql = "SELECT * FROM biodata WHERE id_biodata=?";
 
@@ -56,6 +58,7 @@ class UserQuerys extends Databases {
         endif;
     }
 
+    // untuk meliaht apakah harta nya sudah di setting
     public function checkIncomes($idbiodata){
         $stmt = $this->query("SELECT COUNT(*) FROM incomes_user WHERE id_biodata = '$idbiodata'");
         return $stmt->fetch_array()['COUNT(*)'];
