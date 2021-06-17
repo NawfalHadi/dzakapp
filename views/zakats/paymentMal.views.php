@@ -38,7 +38,7 @@ if(isset($_POST['PAY'])){
 
     if($zakatObject->changeStatus($statuszakat, $idreq)){
 		if($zakatObject->pendingProses($value_buktiPembayaran, $value_tanggalPembayaran, $value_tahunHijri, $object->getIDzakathist)){
-			move_uploaded_file($tmp_buktiPembayaran, $objPath->paymentFitrah_path . $value_buktiPembayaran);
+			move_uploaded_file($tmp_buktiPembayaran, $objPath->paymentMal_path . $value_buktiPembayaran);
             header('location:mainFitrah.views.php');
             echo "succes Message";
 		}else{

@@ -21,7 +21,13 @@ class Querys extends Databases {
     }
 
     public function pj_validateSession($id_biodata){
-        $stmt = $this->query("SELECT COUNT(*) FROM biodata_pj WHERE id_biodata = '$id_biodata'");
+        $stmt = $this->query("SELECT COUNT(*) FROM biodata_pj WHERE id_biodata = '$id_biodata' AND status_active = '1'");
+        return $stmt->fetch_array()['COUNT(*)'];
+        
+    }
+
+    public function pj_notvalidateSession($id_biodata){
+        $stmt = $this->query("SELECT COUNT(*) FROM biodata_pj WHERE id_biodata = '$id_biodata' AND status_active = '0'");
         return $stmt->fetch_array()['COUNT(*)'];
         
     }

@@ -10,8 +10,16 @@ require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
 
 $object = new Querys;
+$message = null;
 
 $data = $object->sessionData($_SESSION['user']);
+$validating = $object->pj_notvalidateSession($_SESSION['user']);
+
+if ($validating != 0) {
+	$message = "req";
+}elseif ($validating2 = $object->pj_validateSession($_SESSION['user'])){
+   $message = "acc";
+}
 ?>
 
 <!DOCTYPE html>
@@ -67,8 +75,14 @@ $data = $object->sessionData($_SESSION['user']);
                      </tr>
                   </table>
                   <br>
-                  <a href="regPJs.views.php" class="w3-button w3-blue">Register Menjadi Penanggung Jawab</a>
-                  <a href="incomes/settings.incomes.php" class="w3-button w3-blue">Penghasilan</a>
+                  <?php if($message == "req"): ?>
+                     <a class="w3-button w3-green">Permintaan menjadi PJ sedang di proses</a>
+                  <?php elseif ($message == "acc"): ?>
+                     <a class="w3-button w3-green">Admin Aktif</a>
+                  <?php else: ?>
+                     <a href="regPJs.views.php" class="w3-button w3-blue">Register Menjadi Penanggung Jawab</a>
+                  <?php endif; ?>
+                     <a href="incomes/settings.incomes.php" class="w3-button w3-blue">Penghasilan</a>
                   <br><br>
                </div>
             </div>

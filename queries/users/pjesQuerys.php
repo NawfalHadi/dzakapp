@@ -32,6 +32,13 @@ class PjesQuerys extends Paths {
         return $stmt;
     }
 
+    public function listPJNotActive(){
+        $sql = "SELECT id_pj, id_biodata, status_active, phone_no, debit_card, no_rek FROM biodata_pj WHERE status_active=0";
+        $stmt = $this->query($sql);
+
+        return $stmt;
+    }
+
     public function getDetailPJ($id_pj){
         $sql = "SELECT * FROM biodata_pj WHERE id_pj=?";
 
@@ -80,6 +87,41 @@ class PjesQuerys extends Paths {
             endif;
         endif;
     }
+
+    public function tolakPj($id_pj){
+        $sql = "DELETE FROM biodata_pj WHERE id_pj=?";
+        if($stmt = $this->prepare($sql)):
+            $stmt->bind_param("i", $param_idpj);
+            $param_idpj = $id_pj;
+            if ($stmt->execute()):
+                return true;
+            else:
+                return false;
+            endif;
+        endif;
+
+        $stmt->close();
+    }
+
+    public function terimaPj($idpj){
+        $sql = "UPDATE biodata_pj SET status_active=? WHERE id_pj=?";
+
+        if($stmt = $this->prepare($sql)):
+            $stmt->bind_param("ii", $param_status, $param_idpj);
+            $param_status = "1";
+            $param_idpj = $idpj;
+            if($stmt->execute()):
+                return true;
+            else:
+                return false;
+            endif;
+        endif;
+
+        $stmt->close();
+
+    }
+
+
 
 
 }

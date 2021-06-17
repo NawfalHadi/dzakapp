@@ -10,6 +10,7 @@ if (!isset($_SESSION['user']) ||(trim ($_SESSION['user']) == '')){
 require_once ('../../../databases/databases.db.php');
 require_once ('../../../queries/systems/querys.php');
 require_once ('../../../queries/systems/incomes.php');
+require_once ('../../../queries/systems/converts.php');
 require_once ('../../../queries/users/userQuerys.php');
 
 $object = new Querys;
@@ -19,6 +20,11 @@ $message = null;
 
 $biodataObject = new UserQuerys;
 $incomeObject = new Incomes;
+
+$goldObject = new Converts;
+$silverObject = new Converts;
+
+if(!$goldObject->useGold()) die ("Error When Gewtting Gold");
 
 
 if(isset($_POST['MAKE'])){
@@ -127,11 +133,16 @@ if(isset($_POST['UPDATES'])){
                   <br>
                </div>
             </div>
-         </div>
-         <div class="w3-container">
+            <br>
+                <a onClick="useGold()" class="w3-button w3-blue">Emas</a>
+                <a onClick="useSilver()" class="w3-button w3-blue">Perak</a>
+            <br><br>
+         </div>        
+
+         <div class="w3-container" id="emas">
             <div class="w3-card-4" style="margin-top: 10px">
                <header class="w3-container w3-light-grey">
-                  <h3>Pendapatan</h3>
+                  <h3>Harta Emas</h3>
                </header>
                <div class="w3-container">
                   <br>
@@ -170,6 +181,68 @@ if(isset($_POST['UPDATES'])){
                </div>
             </div>
          </div>
+
+         <div class="w3-container" id="perak" style="display:none">
+            <div class="w3-card-4" style="margin-top: 10px">
+               <header class="w3-container w3-light-grey">
+                  <h3>Harta Perak</h3>
+               </header>
+               <div class="w3-container">
+                  <br>
+                  <?php if($biodataObject->checkIncomes($data['id_biodata']) == 0){ ?>
+                  <h3>Isi Jumlah Emas Yang anda punya</h3>
+                  <form action="" method="post">
+                     Emas yang dipunya : <input type="number" name="emas_amount">gr
+                     <br><br>
+                     <button type="submit" name="MAKE"> INPUT HARTA</button>
+                  </form>
+                  <?php }else{ if(!$incomeObject->detailIncomes($data['id_biodata'])) die ('error message');  ?> 
+                  <h3>Harta Anda</h3>
+                  <?php if($message == null) { null; } else { echo 'Message : '.$message; } ?>
+                  <form action="" method="post">
+                     <input type="hidden" name="date_pay" value="<?php echo $incomeObject->get_datepay ?>">
+                     <input type="number" name="emas_amount" value="<?php echo $incomeObject->get_emasamount ?>"> gr 
+                     <button type="submit" name="UPDATES">UPDATE</button>
+                  </form>
+                  <?php 
+                     if ($incomeObject->get_datepay != null){
+                         $daysleft = date_diff(date_create(date("Y-m-d")), date_create($incomeObject->get_datepay));
+                     
+                         if($daysleft->format("%R") == "-"){
+                             echo "<p>How many days left to pay : Saatnya membayar zakat mal | <a href=''>You Can Pay Your Zakat Mal Here</a></p> ";
+                         }else {
+                             echo "<p>How many days left to pay : ". $daysleft->format('%a Days Left') ." </p> ";
+                         }
+                     }else {
+                         echo "<p>Masih belum sampai nishab yaitu 85 gram emas</p> ";
+                     }
+                     
+                     
+                     ?>
+                  <?php } ?>
+                  <br><br>
+               </div>
+            </div>
+         </div>
+         <br><br>
       </div>
+
+      <script>
+      
+    function useGold() {
+        document.getElementById("emas").style.display = "block";
+        document.getElementById("perak").style.display = "none";
+    }
+
+    function useSilver() {
+        document.getElementById("perak").style.display = "block";
+        document.getElementById("emas").style.display = "none";
+    }
+
+    function rupiahOrNo() {
+        
+    }
+      
+      </script>
 </body>
 </html>

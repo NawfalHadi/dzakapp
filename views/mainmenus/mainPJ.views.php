@@ -13,8 +13,8 @@ require_once ('../../queries/users/pjesQuerys.php');
 
 
 $object = new Querys;
-$validating = $object->pj_validateSession($_SESSION['user']);
 
+$validating = $object->pj_validateSession($_SESSION['user']);
 if ($validating == 0) {
 	header('location:../../index.php');
 }
@@ -64,7 +64,7 @@ $data = $object->sessionData($_SESSION['user']);
                <div class="w3-container">
                   <a href="#">Biodata Akun</a><br>
                   <a href="../viewsPJ/listPenerima.views.php">Biodata Penerima</a><br>
-                  <a href="#">Biodata PJ</a><br><br>                
+                  <a href="../viewsPJ/listRequestPJ.php">Biodata PJ</a><br><br>                
                </div>
             </div>
          </div>

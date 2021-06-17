@@ -3,7 +3,8 @@
 require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
 require_once ('../../queries/systems/paths.php');
-require_once ('../../queries/users/penerimaQuerys.php');
+require_once ('../../queries/users/userQuerys.php');
+require_once ('../../queries/users/pjesQuerys.php');
 
 session_start();
 
@@ -12,26 +13,39 @@ if (!isset($_SESSION['user']) ||(trim ($_SESSION['user']) == '')){
 }
 
 $object = new Querys;
-$penerimaObject = new PenerimaQuerys;
 $data = $object->sessionData($_SESSION['user']);
 $validating = $object->pj_validateSession($_SESSION['user']);
 $objPath = new Paths;
+
+$pjesObject = new PjesQuerys;
+$biodataObject = new UserQuerys;
+
+if(!$pjesObject->getDetailPJ($_GET['id_pj'])) die ('erro getting detail PJ');
+if(!$biodataObject->getDetailBiodata($pjesObject->getIDbiodata)) die ('error getting detail biodata');
 
 if ($validating == 0) {
 	header('location:../../index.php');
 }
 
-if(!$penerimaObject->getDataPenerima($_GET['id_penerima'])) die ('error message');
+if (isset($_POST['TERIMA'])){
+    if($pjesObject->terimaPj($pjesObject->getIDpj)){
+        header("location:listRequestPJ.php");
+    }
+}elseif (isset($_POST['TOLAK'])){
+    if($pjesObject->tolakPj($pjesObject->getIDpj)){
+        header("location:listRequestPJ.php");
+    }    
+}
 
-if (isset($_POST['HAPUS'])):
+// if (isset($_POST['HAPUS'])):
 
-    if ($penerimaObject->deleteDataPenerima($penerimaObject->id_penerima)):
-        echo "<p>succes message</p>";
-	    header('location:listPenerima.views.php');
-    else:
-        echo "<p>error message</p>";
-    endif;
-endif;
+//     if ($pemberiObject->deleteDataPenerima($pemberiObject->id_penerima)):
+//         echo "<p>succes message</p>";
+// 	    header('location:listPenerima.views.php');
+//     else:
+//         echo "<p>error message</p>";
+//     endif;
+// endif;
 
 ?>
 
@@ -93,36 +107,48 @@ endif;
          <div class="w3-container" style="margin-left: 35px; margin-top: 25px; margin-right: 40px">
             <div class="w3-card-4" style="border-radius: 10px;">
                <header class="w3-container w3-light-grey">
-                  <h3>Detail Penerima</h3>
+                  <h3>Detail PJ Yang Mendaftar</h3>
                </header>
                 <div class="w3-container">
                   <br>
                   <table class="w3-table w3-bordered">
                      <tr>
                         <td>Nama </td>
-                        <td>: <?php echo $penerimaObject->nama ?></td>
+                        <td>: <?php echo $biodataObject->get_nama ?></td>
                      </tr>
                      <tr>
                         <td>Alamat Lengkap </td>
-                        <td>: <?php echo $penerimaObject->alamat_lengkap?>, Rt <?php echo $data['rt']; ?>, Rw <?php echo $data['rw']; ?></td>
+                        <td>: <?php echo $biodataObject->get_alamatlengkap ?></td>
                      </tr>
                      <tr>
                         <td>Kode Pos </td>
-                        <td>: <?php echo $penerimaObject->kode_pos ?></td>
+                        <td>: <?php echo $biodataObject->get_kode_pos ?></td>
                      </tr>
                      <tr>
-                        <td>Foto Penerima </td>
-                        <td>: <img src="<?php echo $objPath->penerima_path . $penerimaObject->foto_penerima ?>" alt="LMAO"></td>
+                        <td>Phone No </td>
+                        <td>: <?php echo $pjesObject->getPhoneNo ?></td>
                      </tr>
                      <tr>
-                        <td>Foto Tempat Tinggal </td>
-                        <td>: <img src="<?php echo $objPath->rumahpenerima_path . $penerimaObject->foto_tempatTinggal ?>" alt="LMAO"></td>
+                        <td>Debit Card </td>
+                        <td>: <?php echo $pjesObject->getDebitCard ?></td>
+                     </tr>
+                     <tr>
+                        <td>No Rekening </td>
+                        <td>: <?php echo $pjesObject->getNoRek ?></td>
+                     </tr>
+                     <tr>
+                        <td>Ktp </td>
+                        <td>: <img src="<?php echo $objPath->ktp_path . $pjesObject->getKtpFoto ?>" alt="LMAO"></td>
+                     </tr>
+                     <tr>
+                        <td>User Dan Ktp </td>
+                        <td>: <img src="<?php echo $objPath->ktpUser_path . $pjesObject->getKtpAndUser ?>" alt="LMAO"></td>
                      </tr>
                   </table>
                   <br>
                   <form action="" method="post">
-                  <a href="<?php echo "editPenerima.views.php?id_penerima=". $penerimaObject->id_penerima?>" class="w3-button w3-blue"><i class="fa fa-edit"></i> Edit Biodata</a>
-                  <button type="submit" name="HAPUS" class="w3-button w3-red"><i class="fa fa-remove"></i> Hapus Data Penerima</button>
+                  <button type="submit" name="TERIMA" class="w3-button w3-green"><i class="fa fa-check"></i> Terima Pendaftaran</button>
+                  <button type="submit" name="TOLAK" class="w3-button w3-red"><i class="fa fa-remove"></i> Tolak Pendaftaran</button>
                   </form>
                   <br><br>
                </div>

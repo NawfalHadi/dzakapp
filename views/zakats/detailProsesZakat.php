@@ -53,7 +53,7 @@ if(isset($_POST['CONFIRM'])){
 
     if($zakatObject->changeStatus($statuszakat, $idreq)){
 		if($zakatObject->pendingToLunas($value_buktiPemberian, date('Y-m-d'), $object->getIDzakathist)){
-			move_uploaded_file($tmp_buktiPemberian, $objPath->giftFitrah_path . $value_buktiPemberian);
+			move_uploaded_file($tmp_buktiPemberian, $objPath->giftMal_path . $value_buktiPemberian);
             header('location:../viewsPJ/listRequestZakat.php');
             echo "succes Message";
 		}else{
