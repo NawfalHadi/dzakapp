@@ -1,7 +1,7 @@
 <?php 
 
 class PenerimaQuerys extends Paths {
-    
+
     // menambahkan data penerima, untuk nanti zakatnya diserahkan
     public function insertDataPenerima($nama, $reason, $alamat, $kodepos, $fotopenerima, $fototempat){
         $sql = "INSERT INTO biodata_penerima(nama, reason, alamat_lengkap, kode_pos, foto_penerima, foto_tempatTinggal) VALUE (?, ?, ?, ?, ?, ?)";

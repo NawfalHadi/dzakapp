@@ -153,9 +153,9 @@ if(isset($_POST['UPDATES'])){
                   <?php 
                      if ($incomeObject->get_datepay != null){
                          $daysleft = date_diff(date_create(date("Y-m-d")), date_create($incomeObject->get_datepay));
-                     
+                        
                          if($daysleft->format("%R") == "-"){
-                             echo "<p>How many days left to pay : Saatnya membayar zakat mal | <a href=''>You Can Pay Your Zakat Mal Here</a></p> ";
+                             echo "<p>How many days left to pay : Saatnya membayar zakat mal | <a href='../../zakats/createMal.views.php'>You Can Pay Your Zakat Mal Here</a></p> ";
                          }else {
                              echo "<p>How many days left to pay : ". $daysleft->format('%a Days Left') ." </p> ";
                          }

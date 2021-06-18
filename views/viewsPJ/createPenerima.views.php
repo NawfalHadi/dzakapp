@@ -9,11 +9,13 @@ if (!isset($_SESSION['user']) ||(trim ($_SESSION['user']) == '')){
 require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
 require_once ('../../queries/systems/paths.php');
+require_once ('../../queries/systems/converts.php');
 require_once ('../../queries/users/penerimaQuerys.php');
 
 $object = new Querys;
 $Obj = new PenerimaQuerys;
 $objPath = new Paths;
+
 
 $validating = $object->pj_validateSession($_SESSION['user']);
 

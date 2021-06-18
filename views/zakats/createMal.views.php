@@ -10,11 +10,15 @@ require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
 require_once ('../../queries/systems/incomes.php');
 require_once ('../../queries/systems/paths.php');
+require_once ('../../queries/systems/converts.php');
 require_once ('../../queries/systems/zakats.php');
 require_once ('../../queries/users/userQuerys.php');
 
 $object = new Querys;
 $data = $object->sessionData($_SESSION['user']);
+
+$goldObject = new Converts;
+if(!$goldObject->useGold()) die ('eror lmao');
 
 $message = null;
 
@@ -25,7 +29,7 @@ if(!$incomeObject->detailIncomes($data['id_biodata'])) die ('error message');
 $zakatObject = new Zakats;
 
 if (isset($_POST['REQ'])):
-    $mal = $incomeObject->calculateZakatMal($incomeObject->get_emasamount);
+    $mal = $incomeObject->calculateZakatMal($incomeObject->get_emasamount) * $goldObject->nominal;
     if ($zakatObject->reqZakat($data['id_biodata'], "Mal",  $mal)):
         echo "<p>succes message</p>";
         header('location:mainMal.views.php');

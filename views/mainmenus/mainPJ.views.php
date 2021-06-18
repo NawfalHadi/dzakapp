@@ -62,7 +62,6 @@ $data = $object->sessionData($_SESSION['user']);
                   <h2>Biodata Management</h2>
                </div>
                <div class="w3-container">
-                  <a href="#">Biodata Akun</a><br>
                   <a href="../viewsPJ/listPenerima.views.php">Biodata Penerima</a><br>
                   <a href="../viewsPJ/listRequestPJ.php">Biodata PJ</a><br><br>                
                </div>

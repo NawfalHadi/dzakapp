@@ -10,12 +10,16 @@ require_once ('../../databases/databases.db.php');
 require_once ('../../queries/systems/querys.php');
 require_once ('../../queries/systems/paths.php');
 require_once ('../../queries/systems/zakats.php');
+require_once ('../../queries/systems/converts.php');
 require_once ('../../queries/users/pjesQuerys.php');
 require_once ('../../queries/users/userQuerys.php');
 require_once ('../../queries/users/penerimaQuerys.php');
 
 $object = new Querys;
 $objPath = new Paths;
+$goldObject = new Converts;
+
+if(!$goldObject->useGold()) die ('eror lmao');
 
 $data = $object->sessionData($_SESSION['user']);
 if(!$object->getDetailHistory($_GET['id_zakatReq'])) die ('error message 1');
@@ -121,7 +125,7 @@ $penerimaOject = new PenerimaQuerys;
                      </tr>
                      <tr>
                         <td>Nominal yang harus di bayar </td>
-                        <td>: Rp. <b><?php echo $zakatObject->data_zakatamount ?></b></td>
+                        <td>: Rp. <b><?php echo $zakatObject->data_zakatamount?></b></td>
                      </tr>
                      <tr>
                         <td>Jenis zakat </td>

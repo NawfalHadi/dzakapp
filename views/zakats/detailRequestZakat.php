@@ -25,6 +25,8 @@ if(!$zakatObject->getDataReq($_GET['id_zakatReq'])) die ('error message');
 $pjesObject = new PjesQuerys;
 if(!$pjesObject->getIDpj($_SESSION['user'])) die ('error message');
 
+echo "LMAO";
+
 if(isset($_POST['PENDING'])){
 	$statuszakat = 'pending';
 	$idreq = $zakatObject->data_idzakatreq;
