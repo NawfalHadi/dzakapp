@@ -2,7 +2,6 @@
 
 class Incomes extends Databases {
 
-
     // Untuk menempatkan pemasukkan agar bisa menghitung zakat mal untuk pembayaran nya
     public function addIncomes($idbiodata, $emasamount, $datepay){
         $sql = "INSERT INTO incomes_user(id_biodata, emas_amount, date_pay) VALUES (?, ?, ?)";

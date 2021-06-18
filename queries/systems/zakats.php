@@ -159,6 +159,14 @@ class Zakats extends Paths {
         endif;
     }
 
+    // untuk mengambil data data zakat dengan berparameter kan idbiodata
+    public function listReqByBiodata($idbiodata){
+        $sql = "SELECT * FROM zakat_req WHERE id_biodataPemberi='$idbiodata' AND zakat_type='Fitrah'";
+        $stmt = $this->query($sql);
+
+        return $stmt;
+    }
+
     
 }
 
