@@ -59,11 +59,12 @@ $data = $object->sessionData($_SESSION['user']);
          <div class="w3-container" style="margin-left: 10px; margin-top: 25px;",>
             <div class="w3-card-4" style="border-radius: 10px;">
                <div class="w3-container">
-                  <h2>Biodata Management</h2>
+                  <h2>Setting</h2>
                </div>
                <div class="w3-container">
                   <a href="../viewsPJ/listPenerima.views.php">Biodata Penerima</a><br>
-                  <a href="../viewsPJ/listRequestPJ.php">Biodata PJ</a><br><br>                
+                  <a href="../viewsPJ/listRequestPJ.php">Biodata PJ</a><br>                
+                  <a href="../viewsPJ/emasPrice.views.php">Harga Emas</a><br><br>                
                </div>
             </div>
          </div>

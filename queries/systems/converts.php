@@ -23,6 +23,21 @@ class Converts extends Databases {
         endif;
             
     }
+
+    public function updateGold($nominal){
+        $sql = "UPDATE alat_tukar SET nominal_rupiah=? WHERE alatTukar='emas'";
+
+        if($stmt = $this->prepare($sql)):
+            $stmt->bind_param("i", $param_nominal);
+            $param_nominal = $nominal;
+            if($stmt->execute()):
+                return true;
+            else:
+                return false;
+            endif;
+        endif;
+
+    }
     
 }
 
